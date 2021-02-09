@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RestWithASPNETUdemy.Model;
-using RestWithASPNETUdemy.Services;
+using RestWithASPNETUdemy.Busines;
 
 namespace RestWithASPNETUdemy.Controllers
 {
@@ -14,14 +14,14 @@ namespace RestWithASPNETUdemy.Controllers
         private readonly ILogger<PersonController> _logger;
 
         // Declaration of the service used
-        private IPersonService _personService;
+        private IPersonBusiness _personBusiness;
 
         // Injection of an instance of IPersonService
         // when creating an instance of PersonController
-        public PersonController(ILogger<PersonController> logger, IPersonService personService)
+        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
-            _personService = personService;
+            _personBusiness = personBusiness;
         }
 
         // Maps GET requests to https://localhost:{port}/api/person
@@ -29,7 +29,7 @@ namespace RestWithASPNETUdemy.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         // Maps GET requests to https://localhost:{port}/api/person/{id}
@@ -38,7 +38,7 @@ namespace RestWithASPNETUdemy.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
-            var person = _personService.FindByID(id);
+            var person = _personBusiness.FindByID(id);
             if (person == null) return NotFound();
             return Ok(person);
         }
@@ -49,7 +49,7 @@ namespace RestWithASPNETUdemy.Controllers
         public IActionResult Post([FromBody] Person person)
         {
             if (person == null) return BadRequest();
-            return Ok(_personService.Create(person));
+            return Ok(_personBusiness.Create(person));
         }
 
         // Maps PUT requests to https://localhost:{port}/api/person/
@@ -58,7 +58,7 @@ namespace RestWithASPNETUdemy.Controllers
         public IActionResult Put([FromBody] Person person)
         {
             if (person == null) return BadRequest();
-            return Ok(_personService.Update(person));
+            return Ok(_personBusiness.Update(person));
         }
 
         // Maps DELETE requests to https://localhost:{port}/api/person/{id}
@@ -66,7 +66,7 @@ namespace RestWithASPNETUdemy.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }
