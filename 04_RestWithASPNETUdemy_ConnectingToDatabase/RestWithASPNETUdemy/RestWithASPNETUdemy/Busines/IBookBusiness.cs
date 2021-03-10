@@ -12,7 +12,7 @@ namespace RestWithASPNETUdemy.Busines
         Book Create(Book book);
         Book FindByID(long id);
         List<Book> FindAll();
-        Person Update(Book book);
+        Book Update(Book book);
         void Delete(long id);
 
     }

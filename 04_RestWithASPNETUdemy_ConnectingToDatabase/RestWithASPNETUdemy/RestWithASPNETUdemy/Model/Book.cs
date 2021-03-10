@@ -19,8 +19,8 @@ namespace RestWithASPNETUdemy.Model
         public DateTime LaunchDate { get; set; }
 
         [Column("price")]
-        public double Price { get; set; }
-        [Column("gender")]
+        public decimal Price { get; set; }
+        [Column("title")]
         public string Title { get; set; }
 
     }

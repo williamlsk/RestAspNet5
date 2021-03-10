@@ -11,6 +11,11 @@ namespace RestWithASPNETUdemy.Repository.Implementations
     {
         private MySQLContext _context;
 
+        public BookRepositoryImplementation(MySQLContext mySQLContext)
+        {
+            _context = mySQLContext;
+        }
+
         public Book Create(Book book)
         {
             try
