@@ -8,10 +8,10 @@ using RestWithASPNETUdemy.Model.Context;
 using RestWithASPNETUdemy.Busines;
 using RestWithASPNETUdemy.Busines.Implementations;
 using RestWithASPNETUdemy.Repository;
-using RestWithASPNETUdemy.Repository.Implementations;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using RestWithASPNETUdemy.Repository.Generic;
 
 namespace RestWithASPNETUdemy
 {
@@ -47,9 +47,9 @@ namespace RestWithASPNETUdemy
 
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
-            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
-            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+            //IoC para genericos
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         private void MigrateDatabase(string connection)

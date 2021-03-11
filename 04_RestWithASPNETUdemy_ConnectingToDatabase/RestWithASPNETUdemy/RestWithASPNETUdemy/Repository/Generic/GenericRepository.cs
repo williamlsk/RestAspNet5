@@ -93,6 +93,6 @@ namespace RestWithASPNETUdemy.Repository.Generic
                 return null;
             }
         }
-        }
     }
 }
+
