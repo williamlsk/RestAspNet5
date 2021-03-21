@@ -16,6 +16,7 @@ namespace RestWithASPNETUdemy.Data.Converter.Implementention
 
             return new Book
             {
+                Id = origin.Id,
                 Author = origin.Author,
                 LaunchDate = origin.LaunchDate,
                 Price = origin.Price,
@@ -29,6 +30,7 @@ namespace RestWithASPNETUdemy.Data.Converter.Implementention
 
             return new BookVO
             {
+                Id = origin.Id,
                 Author = origin.Author,
                 LaunchDate = origin.LaunchDate,
                 Price = origin.Price,
